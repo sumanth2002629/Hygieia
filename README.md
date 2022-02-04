@@ -33,7 +33,7 @@ cd Hygieia/ <br/>
 pip3 install -r requirements.txt
 
 6. ## Make migrations
-python3 manage.py makemigrations
+python3 manage.py makemigrations <br/>
 python3 manage.py migrate
 
 7. ## Run the server
