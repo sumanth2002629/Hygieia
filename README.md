@@ -1,8 +1,8 @@
-# Instructions
+# Hygieia
+
+## Instructions
 
 1. ## For installing virtual environment
-
-#Hygieia
 
 On macOS and Linux:
 python3 -m pip3  install --user virtualenv
@@ -26,10 +26,10 @@ On Windows:
 .\env\Scripts\activate
 
 4. ## Use the following command in your terminal
-git clone https://github.com/chinmayparekh/Blogspot.git
+git clone https://github.com/chinmayparekh/Hygieia.git
 
 5. ## Install requirements
-cd Blogspot/ <br/>
+cd Hygieia/ <br/>
 pip3 install -r requirements.txt
 
 6. ## Make migrations
