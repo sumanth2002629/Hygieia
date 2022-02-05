@@ -7,6 +7,12 @@ from .models import RoomMember
 import json
 from django.views.decorators.csrf import csrf_exempt
 
+import base.PriaidDiagnosisClient
+import random
+import base.config
+import sys
+import json
+
 
 # Create your views here.
 def home(request):
