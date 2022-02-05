@@ -9,5 +9,6 @@ urlpatterns = [
     path('create_member/', views.createMember, name='base-createMember'),
     path('get_member/', views.getMember, name='base-getMember'),
     path('delete_member/', views.deleteMember, name='base-deleteMember'),
+    path('symptom_checker/',views.symptom_checker,name="symptom_checker"),
 
 ]

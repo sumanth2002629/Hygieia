@@ -7,11 +7,8 @@ from .models import RoomMember
 import json
 from django.views.decorators.csrf import csrf_exempt
 
-import base.PriaidDiagnosisClient
-import random
-import base.config
-import sys
-import json
+from base.api_class import PriaidDiagnosisClientMine 
+
 
 
 # Create your views here.
@@ -76,3 +73,7 @@ def deleteMember(request):
     )
     member.delete()
     return JsonResponse('Member deleted', safe=False)
+
+def symptom_checker(request):
+    return render(request,"base/symptom_checker.html")
+    pass

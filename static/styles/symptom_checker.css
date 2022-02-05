@@ -1,0 +1,57 @@
+body{
+	overflow-x: hidden;
+	background-color: #ECB539;
+}
+#form-step-wrap{
+  position: relative;
+  overflow-x: hidden;
+	width: 100%;
+}
+
+/* Each Step */
+.slider-step{
+	box-shadow: 5px 5px 50px rgba(0,0,0,0.2);
+	background-color: #fafafa;
+	padding: 40px;
+	position: absolute;
+  width: 100%;
+  right: -50%;
+  top: 30px;
+  opacity: 0;
+  -webkit-transition:all, 0.3s linear;
+  -moz-transition: all, 0.3s linear;
+  -ms-transition: all, 0.3s linear;
+  -o-transition: all, 0.3s linear;
+  transition: all, 0.3s linear;
+}
+
+/* Show the 1st step */
+.first-step{
+  right: 0;
+  opacity: 1;
+}
+
+/* Button */
+.btn-next,
+.btn-back{
+	margin-top: 20px;
+	display: block;
+}
+
+/* Animations Settings */
+[data-anim="show-from--right"]{
+  right: 0;
+  opacity: 1;
+}
+[data-anim="show-from--left"]{
+  right: 0;
+  opacity: 1;
+}
+[data-anim="hide-to--right"]{
+  right: -50%;
+  opacity: 0;
+}
+[data-anim="hide-to--left"]{
+  right: 50%;
+  opacity: 0;
+}
