@@ -1,6 +1,6 @@
-import base.PriaidDiagnosisClient
+import base.PriaidDiagnosisClient as PriaidDiagnosisClient
 import random
-import base.config
+import base.config as config
 import sys
 import json
 
@@ -13,7 +13,7 @@ class PriaidDiagnosisClientMine:
         authUrl = config.priaid_authservice_url
         healthUrl = config.priaid_healthservice_url
         language = config.language
-        self._printRawOutput = config.pritnRawOutput
+        # self._printRawOutput = config.pritnRawOutput
 
         self._diagnosisClient = PriaidDiagnosisClient.DiagnosisClient(username, password, authUrl, language, healthUrl)
 

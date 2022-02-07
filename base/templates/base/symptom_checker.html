@@ -1,4 +1,6 @@
-{% load static %}
+<!-- {% load static %}
+
+
 <script src="{% static 'js/symptom_checker.js' %}"></script>
 <link
       rel="stylesheet"
@@ -7,183 +9,102 @@
       href="{% static 'styles/symptom_checker.css' %}"
     />
 
-    <link
+     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
     rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
     crossorigin="anonymous"
-  />
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
-<div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-8 col-md-offset-4 col-lg-6 col-lg-offset-3">
-        <!-- Offset -->
-        <div class="form-step-wrap">
-            <div id="step1box" class="slider-step first-step step" data-next-step="step-mortgage-balance">
-              <div class="row tall">
-  
-                <div class="col-xs-12 form-questions">
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <label>Choose Body Location of symtom</label>
-                      <select id="loanpurpose" name="loanpurpose" tabindex="1" class="form-control">
-                        <option>Abdomen, pelvis & buttocks</option>
-                        <option>Arms & shoulder</option>
-                        <option>Chest & back</option>
-                        <option>Head, throat & neck</option>
-                        <option>Legs</option>
-                        <option selected>Skin, joints & general</option>
-                      </select>
-                    </div>
-                  </div>
-                   <div class="row">
-                    <div class="col-xs-12">
-                      <label class="pad-top">Choose State</label>
-                      <p id="state-error" class="input-error">Please Select State</p>
-                      <select name="state" tabindex="2" class="form-control">
-                        <option value="">Choose State...</option>
-                        <option value="AL">Alabama</option>
-                        <option value="AK">Alaska</option>
-                        <option value="AZ">Arizona</option>
-                        <option value="AR">Arkansas</option>
-                        <option value="CA">California</option>
-                        <option value="CO">Colorado</option>
-                        <option value="CT">Connecticut</option>
-                        <option value="DE">Delaware</option>
-                        <option value="FL">Florida</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <!-- /Form Questions -->
-              </div>
-              <!-- /Row -->
-              <div class="row">
-  
-                <div class="col-xs-12 border">
-                  <input type='button' value='Continue' tabindex="3" class="btn-next btn-success form-control" />
-                </div>
-              </div>
-            </div>
-            <!-- Upper Text -->
-            <div id="step-mortgage-balance" class="slider-step step" data-next-step="step-home-value" data-back-to="step1box">
-              <div class="row">
-                <div class="col-xs-12  ">
-                  <label class="streamline">Mortgage Balance</label>
-                  <p id="mortgagebalance-error" class="input-error">Please Select Mortgage Balance</p>
-                  <select name="mortgagebalance" class="form-control streamline" tabindex="4">
-                    <option value="">Estimate Balance...</option>
-  
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <input type='button' value='Continue' tabindex="5" class="btn-success form-control btn-next" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <a class="btn-back">back</a>
-                </div>
-              </div>
-            </div>
-            <!-- Mortgage Balance -->
-            <div id="step-home-value" class="slider-step step" data-next-step="step-interest-rate" data-back-to="step-mortgage-balance">
-              <!-- Home Value -->
-              <div class="row">
-                <div class="col-xs-12  ">
-                  <label>Property Value</label>
-                  <p id="propertyvalue-error" class="input-error">Please Select Property Value</p>
-                  <select name="propertyvalue" class="form-control" tabindex="6">
-                    <option value="">Estimate Value...</option>
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <input id="next-home-value" type='button' value='Continue' tabindex="7" class="btn-success form-control btn-next" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <a id="back-home-value" class="btn-back">back</a>
-                </div>
-              </div>
-            </div>
-            <!-- /Home Value -->
-            <div id="step-interest-rate" class="slider-step step" data-next-step="step-home-buy-process" data-back-to="step-home-value">
-              <!-- Interest Rate -->
-              <div class="row">
-                <div class="col-xs-12  ">
-                  <label>Current Interest Rate</label>
-                  <p id="mortgagerate-error" class="input-error">Please Select Interest Rate</p>
-                  <select name="mortgagerate" class="form-control" tabindex="8">
-                    <option value="3"   >Under 3.5%</option>
-                    <option value="3.5" >3.50% - 3.74%</option>
-                    <option value="3.75">3.75% - 3.99%</option>
-                    <option value="4"   >4.00% - 4.24%</option>
-                    <option value="4.25">4.25% - 4.49%</option>
-                    <option value="4.5" >4.50% - 4.74%</option>
-                    <option value="4.75">4.75% - 4.99%</option>
-                    <option value="5"   selected='selected'>5.00% - 5.24%</option>
-                    <option value="5.25">5.25% - 5.49%</option>
-                    <option value="5.5" >5.50% - 5.74%</option>
-                    <option value="5.75">5.75% - 5.99%</option>
-                    <option value="6"   >6.00% - 6.49%</option>
-                    <option value="6.5" >6.50% - 6.99%</option>
-                    <option value="7"   >7.00% - 7.50%</option>
-                    <option value="8"   >Over 7.5%</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <input id="next-interest-rate" type='button' value='Continue' tabindex="9" class="btn-success form-control btn-next" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <a id="back-interest-rate" class="btn-back">back</a>
-                </div>
-              </div>
-            </div>
-            <!-- /Interest Rate -->
-            <div id="step-home-buy-process" class="slider-step step">
-            <!-- Home Buy Process -->
-            <div class="row">
-              <div class="col-xs-12 ">
-                <label class="purchase">Describe your home buying progress.</label>
-                <p id="mortgagegoal-error" class="input-error">Please Select Home Buying Progress</p>
-                <select name="mortgagegoal" class="form-control purchase" tabindex="10">
-                  <option value="">---Select---</option>
-                  <option value="signed_pa">I have a signed purchase agreement</option>
-                  <option value="offer_pending">I am in the process of making an offer on a home</option>
-                  <option value="buying_soon">I want to buy a home in the next few months</option>
-                  <option value="preapproval_letter">I need a pre-approval letter</option>
-                  <option value="researching">I want to buy a home 6 or more months from now</option>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <input id="next-home-buy-process" type='button' value='Continue' tabindex="11" class="btn-success form-control btn-next" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <a id="back-home-buy-process" class="btn-back">back</a>
-              </div>
-            </div>
-          </div>
-  
-          <div class="clear"></div>
+
+  <div id="registration-form">
+    <div class='fieldset'>
+      <legend>Wanna be Cool?!</legend>
+      <form action="#" method="post" data-validate="parsley">
+        <div class='row'>
+          <label for='firstname'>First Name</label>
+          <input type="text" placeholder="First Name" name='firstname' id='firstname' data-required="true" data-error-message="Your First Name is required">
         </div>
-        <!-- Offset -->
-      </div>
+        <div class='row'>
+          <label for="email">E-mail</label>
+          <input type="text" placeholder="E-mail"  name='email' data-required="true" data-type="email" data-error-message="Your E-mail is required">
+        </div>
+        <div class='row'>
+          <label for="cemail">Confirm your E-mail</label>
+          <input type="text" placeholder="Confirm your E-mail" name='cemail' data-required="true" data-error-message="Your E-mail must correspond">
+        </div>
+        <input type="submit" value="Register">
+      </form>
     </div>
-    <!-- Container Row -->
+  </div> -->
+
+
+<!DOCTYPE html>
+<html>
+   <body>
+      <head>
+         <title>HTML Forms</title>
+      </head>
+      {% if flag == 0 %}
+      
+      <form>
+        <br> 
+         <label for="dog-names"> Body Location</label>
+        <select name="body_locations" id="body_locations">
+          
+            <option value="Abdomen, pelvis & buttocks">Abdomen, pelvis & buttocks</option>
+          <option value="Arms & shoulder">Arms & shoulder</option>
+          <option value="Chest & back">Chest & back</option>
+          <option value="Legs">Legs</option>
+          <option value="Skin, joints & general">Skin, joints & general</option>
+        </select>
+         <br>
+        
+         <br><br>
+         <input type="submit" value="SUBMIT">
+
+      </form>
+      {% elif flag == 1 %}
+      <form>
+        <br> 
+         <label for="body_subloctions"> Body SubLocation</label>
+        <select name="body_sublocations" id="body_sublocations">
+
+          {% for i in sublocations %}
+
+          <option value={{i}}>{{i}}</option>
+          {%endfor%}
+          
+            
+        </select>
+         <br>
+        
+         <br><br>
+         <input type="submit" value="SUBMIT">
+
+      </form>
+
+      {% elif flag == 2 %}
+      <form>
+        <br> 
+         <label for="symptoms"> Body SubLocation</label>
+        <select name="symptoms" id="symptoms">
+
+          {% for i in symptoms %}
+
+          <option value={{i}}>{{i}}</option>
+          {%endfor%}
+          
+            
+        </select>
+         <br>
+        
+         <br><br>
+         <input type="submit" value="SUBMIT">
+
+      </form>
+      {% endif %}
+      
+   </body>
+</html>

@@ -8,9 +8,11 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 
 from base.api_class import PriaidDiagnosisClientMine 
+import base.PriaidDiagnosisClient as PriaidDiagnosisClient
 
 
-
+flag=0
+bodySublocations=[]
 # Create your views here.
 def home(request):
     return render(request, 'base/home.html', )
@@ -75,5 +77,50 @@ def deleteMember(request):
     return JsonResponse('Member deleted', safe=False)
 
 def symptom_checker(request):
-    return render(request,"base/symptom_checker.html")
-    pass
+    
+    api = PriaidDiagnosisClientMine()
+    global flag
+    locid=0
+    sublocid=0
+    global bodySublocations
+    if flag==0:
+        
+        flag=1
+        return render(request,"base/symptom_checker.html",{"flag":0})
+
+    elif flag==1:
+        bodyLocations = api._diagnosisClient.loadBodyLocations()
+        if ("body_locations" not in request.GET):
+            flag=0
+            return render(request,"base/symptom_checker.html",{"flag":0})
+
+        body_loc = request.GET["body_locations"]
+        flag=2
+        for i in bodyLocations:
+            if i["Name"]==body_loc:
+                locid = i["ID"]
+
+        bodySublocations=api._diagnosisClient.loadBodySubLocations(locid)
+        to_html=[i["Name"] for i in bodySublocations]
+        flag=2
+        return render(request,"base/symptom_checker.html",{"flag":1,"sublocations":to_html})
+    
+    elif flag==2:
+        body_subloc = request.GET["body_sublocations"]
+        bodySublocations = api._diagnosisClient.loadBodySubLocations(locid)
+        for i in bodySubLocations:
+            if i["Name"]==body_subloc:
+                sublocid = i["ID"]
+
+        symptoms = api._diagnosisClient.loadSublocationSymptoms(sublocid, PriaidDiagnosisClient.SelectorStatus.Man)
+        flag=3
+        to_html=[i["Name"] for i in symptoms]
+        return render(request,"base/symptom_checker.html",{"flag":2,"symptoms":to_html})
+
+        
+
+
+
+        
+
+    
