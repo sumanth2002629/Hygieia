@@ -107,10 +107,12 @@ def symptom_checker(request):
     
     elif flag==2:
         body_subloc = request.GET["body_sublocations"]
-        bodySublocations = api._diagnosisClient.loadBodySubLocations(locid)
-        for i in bodySubLocations:
+        # bodySubLocations = api._diagnosisClient.loadBodySubLocations(locid)
+        for i in bodySublocations:
             if i["Name"]==body_subloc:
                 sublocid = i["ID"]
+
+        print(sublocid)
 
         symptoms = api._diagnosisClient.loadSublocationSymptoms(sublocid, PriaidDiagnosisClient.SelectorStatus.Man)
         flag=3
