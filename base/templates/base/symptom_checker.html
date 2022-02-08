@@ -106,6 +106,16 @@
          <input type="submit" value="SUBMIT">
 
       </form>
+
+      {% elif flag == 3 %}
+
+        {% for i in diagnosis %}
+          <p>Name: {{i.0}} - {{i.1}}%</p>
+          
+          <p>Specialisation: {{i.2}}</p>
+          <br><br><br>
+        {%endfor%}
+
       {% endif %}
       
    </body>

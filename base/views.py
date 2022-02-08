@@ -13,6 +13,7 @@ import base.PriaidDiagnosisClient as PriaidDiagnosisClient
 
 flag=0
 bodySublocations=[]
+symptoms=[]
 # Create your views here.
 def home(request):
     return render(request, 'base/home.html', )
@@ -82,7 +83,9 @@ def symptom_checker(request):
     global flag
     locid=0
     sublocid=0
+    symptom_id=0
     global bodySublocations
+    global symptoms
     if flag==0:
         
         flag=1
@@ -119,6 +122,33 @@ def symptom_checker(request):
         flag=3
         to_html=[i["Name"] for i in symptoms]
         return render(request,"base/symptom_checker.html",{"flag":2,"symptoms":to_html})
+
+    elif flag==3:
+        selected_symp = request.GET["symptoms"]
+        flag=0
+        for i in symptoms:
+            if i["Name"]==selected_symp:
+                symptom_id=i["ID"]
+
+        selectedSymptomsIds = [symptom_id]
+        #change this based on gender and birth year of patient
+        diagnosis = api._diagnosisClient.loadDiagnosis(selectedSymptomsIds, PriaidDiagnosisClient.Gender.Male, 1988)
+
+        to_html=[]
+        for d in diagnosis:
+            specialisations = []
+            for specialisation in d["Specialisation"]:
+                specialisations.append(specialisation["Name"])
+            print("{0} - {1}% \nSpecialisations : {2}\n".format(d["Issue"]["Name"], d["Issue"]["Accuracy"],  ",".join(x for x in specialisations)))
+
+
+
+            to_html.append([d["Issue"]["Name"], d["Issue"]["Accuracy"],  ",".join(x for x in specialisations)]) 
+
+        print(to_html[0])
+        return render(request,"base/symptom_checker.html",{"flag":3,"diagnosis":to_html})
+
+
 
     flag=0
     return render(request,"base/symptom_checker.html",{"flag":0})
