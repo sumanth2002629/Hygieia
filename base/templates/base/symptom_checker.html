@@ -50,13 +50,15 @@
       
       <form>
         <br> 
-         <label for="dog-names"> Body Location</label>
+         <label for="body-locations"> Body Location</label>
         <select name="body_locations" id="body_locations">
           
             <option value="Abdomen, pelvis & buttocks">Abdomen, pelvis & buttocks</option>
           <option value="Arms & shoulder">Arms & shoulder</option>
           <option value="Chest & back">Chest & back</option>
           <option value="Legs">Legs</option>
+          <option value="Head, throat & neck">Head, throat & neck</option>
+          
           <option value="Skin, joints & general">Skin, joints & general</option>
         </select>
          <br>
@@ -73,7 +75,7 @@
 
           {% for i in sublocations %}
 
-          <option value={{i}}>{{i}}</option>
+          <option value="{{i}}">{{i}}</option>
           {%endfor%}
           
             

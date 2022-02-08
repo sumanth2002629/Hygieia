@@ -107,6 +107,7 @@ def symptom_checker(request):
     
     elif flag==2:
         body_subloc = request.GET["body_sublocations"]
+        print(body_subloc)
         # bodySubLocations = api._diagnosisClient.loadBodySubLocations(locid)
         for i in bodySublocations:
             if i["Name"]==body_subloc:
@@ -118,6 +119,10 @@ def symptom_checker(request):
         flag=3
         to_html=[i["Name"] for i in symptoms]
         return render(request,"base/symptom_checker.html",{"flag":2,"symptoms":to_html})
+
+    flag=0
+    return render(request,"base/symptom_checker.html",{"flag":0})
+
 
         
 
