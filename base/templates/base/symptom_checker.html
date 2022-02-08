@@ -90,7 +90,7 @@
       {% elif flag == 2 %}
       <form>
         <br> 
-         <label for="symptoms"> Body SubLocation</label>
+         <label for="symptoms"> Symptoms</label>
         <select name="symptoms" id="symptoms">
 
           {% for i in symptoms %}
@@ -115,6 +115,10 @@
           <p>Specialisation: {{i.2}}</p>
           <br><br><br>
         {%endfor%}
+
+        {%if not diagnosis%}
+        <p>Nothing in our database. Sorry!</p>
+        {%endif%}
 
       {% endif %}
       

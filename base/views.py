@@ -124,6 +124,8 @@ def symptom_checker(request):
         return render(request,"base/symptom_checker.html",{"flag":2,"symptoms":to_html})
 
     elif flag==3:
+        if "symptoms" not in request.GET:
+            return render(request,"base/symptom_checker.html",{"flag":3,"diagnosis":[]})
         selected_symp = request.GET["symptoms"]
         flag=0
         for i in symptoms:
@@ -145,8 +147,9 @@ def symptom_checker(request):
 
             to_html.append([d["Issue"]["Name"], d["Issue"]["Accuracy"],  ",".join(x for x in specialisations)]) 
 
-        print(to_html[0])
+        # print(to_html[0])
         return render(request,"base/symptom_checker.html",{"flag":3,"diagnosis":to_html})
+
 
 
 

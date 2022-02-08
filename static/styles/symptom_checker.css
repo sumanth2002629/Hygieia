@@ -9,7 +9,7 @@ body{
   background:#b4b4b4;
 }
 
-#registration-form {
+#form {
   font-family:'Open Sans Condensed', sans-serif;
   width: 400px;
   min-width:250px;
@@ -17,14 +17,14 @@ body{
   position: relative;
 }
 
-#registration-form .fieldset {
+#form .fieldset {
   background-color:#d5d5d5;
 
   border-radius: 3px;
   
 }
 
- #registration-form legend {
+ #form legend {
   text-align: center;
   background: #364351;
   width: 100%;
@@ -43,10 +43,10 @@ font-size:2em;
   box-sizing:border-box;
   border-radius:0 0 3px 3px;
 }
-.placeholder #registration-form label {
+.placeholder #form label {
   display: none;
 }
- .no-placeholder #registration-form label{
+ .no-placeholder #form label{
 margin-left:5px;
   position:relative;
   display:block;
@@ -58,7 +58,7 @@ margin-left:5px;
 ::-webkit-input-placeholder { text-shadow:1px 1px 1px white; font-weight:bold; }
 ::-moz-placeholder { text-shadow:0 1px 1px white; font-weight:bold; } /* firefox 19+ */
 :-ms-input-placeholder { text-shadow:0 1px 1px white; font-weight:bold; } /* ie */
-#registration-form input[type=text] {
+#form input[type=text] {
   padding: 15px 20px;
   border-radius: 1px;
   margin:5px auto;
@@ -79,17 +79,17 @@ margin-left:5px;
 -ms-transition:background-color .5s ease;
 transition:background-color .5s ease;
 }
-.no-placeholder #registration-form input[type=text] {
+.no-placeholder #form input[type=text] {
   padding: 10px 20px;
 }
 
-#registration-form input[type=text]:active, .placeholder #registration-form input[type=text]:focus {
+#form input[type=text]:active, .placeholder #form input[type=text]:focus {
   outline: none;
   border-color: silver;
   background-color:white;
 }
 
-#registration-form input[type=submit] {
+#form input[type=submit] {
   font-family:'Open Sans Condensed', sans-serif;
   text-transform:uppercase;
   outline:none;
@@ -111,11 +111,11 @@ transition:background-color .5s ease;
   top:0;
 }
 
-#registration-form input[type=submit]:hover {
+#form input[type=submit]:hover {
   background-color: #2980b9;
 }
 
-#registration-form input[type=submit]:active {
+#form input[type=submit]:active {
 background:#5C8CA7;
 }
 
@@ -144,7 +144,7 @@ margin-top:-5px;
   border-color:#870d0d!important;
   border-bottom:none;
 }
-#registration-form select{
+#form select{
   width:100%;
   padding:5px;
 }
