@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <head>
+         <title>Post available slots</title>
+      </head>
+     
+      
+      <form id="free_slots">
+        Free Slots(For 15 minutes):
+        <br>
+        <input type="time" id="appt0" name="appt0">
+        <br>
+
+        
+        
+      </form>
+      <button onclick="add()">Add</button>
+      <br><br><br><br>
+
+      <input type="submit"  form="free_slots" value="SUBMIT">
+      
+
+
+      <script>
+          var add = function() {
+
+                var x = document.createElement("INPUT");
+                x.setAttribute("type", "time");
+                x.setAttribute("name", "appt" + Math.floor(document.getElementById("free_slots").childElementCount/2))// divide by 2 bcz of the brs
+                document.getElementById("free_slots").appendChild(x);
+                document.getElementById("free_slots").appendChild(document.createElement("br"));
+
+            };
+
+      </script>
+
+      
+     
+      
+   </body>
+</html>
