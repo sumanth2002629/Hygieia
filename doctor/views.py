@@ -1,3 +1,4 @@
+from xml.etree.ElementTree import fromstring
 from django.shortcuts import render
 from doctor.models import Free_Slots
 
@@ -14,7 +15,7 @@ def add_slots(request):
             print(type(request.GET[slot]))
             print(request.GET["appt"+str(appt)])
             fs = Free_Slots(
-                doc_username = "John",
+                doc_username = "John",#hard coded for now. get it from logged in user
                 time = request.GET[slot]
             )
             appt+=1
@@ -28,3 +29,9 @@ def add_slots(request):
         print(i.doc_username, i.time)
 
     return render(request,"doctor/free_slots_doc.html")
+
+def view_slots(request):
+    #get username actually from cookie or something
+    username= "John"
+    available =  Free_Slots.objects.filter(doc_username=username)
+    return render(request, 'doctor/view_slots.html',{"available":available})
