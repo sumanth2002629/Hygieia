@@ -16,7 +16,7 @@ bodySublocations=[]
 symptoms=[]
 # Create your views here.
 def home(request):
-    return render(request, 'base/home.html', )
+    return render(request, 'base/home.html')
 
 
 def lobby(request):
