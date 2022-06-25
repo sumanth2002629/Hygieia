@@ -26,12 +26,19 @@ def add_slots(request):
 
     #testing
     for i in Free_Slots.objects.all():
-        print(i.doc_username, i.time)
+        print(i.doc_username, i.time,i.id)
 
     return render(request,"doctor/free_slots_doc.html")
 
 def view_slots(request):
     #get username actually from cookie or something
+    print(request.GET)
+    # print(request.POST)
+
+
+    if "apptno" in request.GET:
+        Free_Slots.objects.get(id=int(request.GET['apptno'])).delete()
+
     username= "John"
     available =  Free_Slots.objects.filter(doc_username=username)
     return render(request, 'doctor/view_slots.html',{"available":available})
