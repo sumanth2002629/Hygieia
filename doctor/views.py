@@ -44,6 +44,9 @@ def view_slots(request):
         Free_Slots.objects.get(id=int(request.GET['apptno'])).delete()
 
     username= request.user.username
+
+
     
     available =  Free_Slots.objects.filter(doc_username=username)
+    print(available)
     return render(request, 'doctor/view_slots.html',{"available":available})

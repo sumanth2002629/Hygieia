@@ -1,38 +1,48 @@
-<!DOCTYPE html>
-<html>
-   <body>
-      <head>
-         <title></title>
-      </head>
-      <p></p>
+{%extends "patient/home.html" %}
+{%load static%}
+{%block content%} 
       
-     
-      <form id="form"> 
-        <input type="search" id="query" name="specialisation" placeholder="Search by specialisation">
-        <button>Search</button>
+     <br><br><br><br>
+      <form id="form" style="display:inline-block;"> 
+        <input type="search" id="query" name="specialisation" placeholder="Search by specialisation" class="form-control ds-input" style="width:50%;margin-left:900px;">
+        <button class="btn btn-outline-primary btn-lg" style="margin-left:1500px;">Search</button>
       </form>
 
-      <table>
+      <br><br><br><br>
+      
         {% for doc in available_doctors %}
-        <tr>
+        <div style="align-items: center;"></div>
+         
+         <div class="card">
+            <div class="card-header bg-dark text-white align-items: center;">
+            {{doc.specialisation}}
+            </div>
+            <div class="card-body">
+            
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            <form id="doc">
+               <h5 class="card-title"><span>Doctor Name: </span>{{doc.user.username}}</h5>
+               <input type="hidden" name="name" value="{{doc.user.username}}"/>
+               <input type="submit" class="btn" style="color:white;background-color:#A020F0" value="View Available Slots" >
+            </form>
+            </div>
+         </div>
+      <br><br><br>         
+              
 
-           <td>
-              <form id="doc">
-                 <label>{{doc.user.username}}</label>
-                 <input type="hidden" name="name" value="{{doc.user.username}}"/>
-                 <input type="submit" value="View Available Slots" >
-              </form>
-
-           </td>
+   </div>
 
            <!-- <td>
               <input type="submit" value="Delete Row" onclick="SomeDeleteRowFunction(this,'{{slot.time}}')">
             </td> -->
-         </tr>
+        
          
         {%endfor %}
+      
+      </table>
+
+{%endblock content%}
        
 
 
-   </body>
-</html>
+ 

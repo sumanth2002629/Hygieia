@@ -1,35 +1,28 @@
-<!DOCTYPE html>
-<html>
-   <body>
-      <head>
-         <title>Post available slots</title>
-      </head>
+{%extends "patient/home.html" %}
+{%load static%}
+{%block content%} 
       
      
      
-
-
-       <table>
+<br><br><br><br>
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+       
          {% for slot in available_slots %}
-         <tr>
-
-            <td>
-               <form id="slots{{slot.id}}">
-                  <label>{{slot.time}}</label>
-                  <input type="hidden" name="apptno" value="{{slot.id}}"/>
-                  <input type="submit" value="Book Appoinment" >
-               </form>
-
-            </td>
- 
-            <!-- <td>
-               <input type="submit" value="Delete Row" onclick="SomeDeleteRowFunction(this,'{{slot.time}}')">
-             </td> -->
-          </tr>
-          
+            <div class="card">
+               <div class="card-header">
+               Featured
+               </div>
+               <div class="card-body">
+               <h5 class="card-title">Special title treatment</h5>
+               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+               <a href="#" class="btn btn-primary">Go somewhere</a>
+               </div>
+            </div>
+           <br><br><br>
          {%endfor %}
         
-       </table>
+      
 
        <script>
          function SomeDeleteRowFunction(o,time) {
@@ -43,10 +36,4 @@
          }
          </script>
       
-     
-
-      
-     
-      
-   </body>
-</html>
+{%endblock content%}

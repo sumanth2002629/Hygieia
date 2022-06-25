@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-   <body>
-      <head>
-         <title>Post available slots</title>
-      </head>
-      
-     
-     
-
+{%extends "doctor/home.html" %}
+{% load static %}
+{%block content%}      
+<br><br><br><br>
 
        <table>
          {% for slot in available %}
@@ -27,27 +21,21 @@
                <input type="submit" value="Delete Row" onclick="SomeDeleteRowFunction(this,'{{slot.time}}')">
              </td> -->
           </tr>
+
+          <script>
+               function SomeDeleteRowFunction(o,time) {
+                  console.log('slots'+time)
+                  
+                  var p=o.parentNode.parentNode;
+                  p.parentNode.removeChild(p);
+                  document.getElementById('slots'+time).submit();
+
+                  
+               };
+        </script>
           
          {%endfor %}
         
        </table>
 
-       <script>
-         function SomeDeleteRowFunction(o,time) {
-            console.log('slots'+time)
-            
-            var p=o.parentNode.parentNode;
-            p.parentNode.removeChild(p);
-            document.getElementById('slots'+time).submit();
-
-              
-         }
-         </script>
-      
-     
-
-      
-     
-      
-   </body>
-</html>
+{%endblock content%}
