@@ -1,12 +1,14 @@
 from time import thread_time
 from django.shortcuts import render
-from register_login.models import Doctor
+from register_login.models import Patient
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'patient/home.html')
+    user = request.user
+    patient = Patient.objects.filter(user=user)
+    return render(request, 'patient/patient_profile.html',{"patient":patient[0]})
 
 def book_appoinment(request):
     #first recieve specialisation and sort doctors based on that

@@ -1,0 +1,57 @@
+{%extends "patient/home.html" %}
+{% load static %}
+{%block content%}
+<style>
+    #profile{
+        color:#6B63FE;
+    }
+
+    #Text{
+        color:#212529;
+    }
+  
+</style>
+
+<br>
+<br>
+<br><br><br><br>
+
+
+<div id="formbox" class=" bg-dark text-light container d-flex justify-content-center mb-3re">
+    <div>
+        <br>
+        <h1 id="regText" >View Your Details</h1>
+        <br>
+    </div>
+    <div id="aligndiv" class=" text-light d-flex">
+        
+        <div class="d-none d-md-block p-2"><img src="{% static 'images/profilecomp.svg' %}" class="d-block w-100"
+                                                alt="assets/portfolio.svg"></div>
+
+    </div>
+
+    <div id="aligndiv" class="bg-light text-dark" style="border-radius: 25px;">
+        <div id="profilediv" class="p-2">
+            <br>
+            <h5 style="text-align: center" id="profile"><span id="Text" class="extra" style="font-weight:bolder;">Patient </span>Details
+            </h5>
+            <br><br><br>
+            <h5 id="profile">Name: <span id="Text" class="extra"
+                                         style="font-weight:bolder;">{{patient.user.username}} </span></h5>
+            <br><br>
+            <h5 id="profile">Email: <span id="Text" style="font-weight:bolder;">{{patient.user.email}} </span></h5>
+            <br><br>
+            <h5 id="profile">AadhaarID: <span id="Text" style="font-weight:bolder;">{{patient.aadhaar_id}} </span></h5>
+            
+           
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center">
+    <small class="text-muted">
+    </small>
+</div>
+
+<br><br><br>
+{%endblock content%}

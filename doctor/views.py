@@ -1,11 +1,14 @@
 from xml.etree.ElementTree import fromstring
 from django.shortcuts import render
 from doctor.models import Free_Slots
+from register_login.models import Doctor
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'doctor/home.html')
+    user = request.user
+    doctor = Doctor.objects.filter(user=user)
+    return render(request, 'doctor/doctor_profile.html',{"doctor":doctor[0]})
 
 def add_slots(request):
     print(request.GET)

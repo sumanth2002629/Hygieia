@@ -79,6 +79,7 @@
     <a style="float:left" href="{% url 'doctor-home' %}" class="nav-content">Home</a>
     <a style="float:left" href="{% url 'add_slots' %}" class="nav-content">Add Slots</a>
     <a style="float:left" href="{% url 'view_slots' %}" class="nav-content">View Slots</a>
+    
 
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
@@ -219,7 +220,7 @@
     {% endif %}
 
 </head>
-<body style="background-image: url({% static 'images/background4.png' %});">
+<body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark pt-3 fixed-top">
     <div class="container">
@@ -246,6 +247,9 @@
                 </li> 
                 <li class="nav-item">
                     <a href="{%url 'base-lobby'%}" class="nav-link">Video Call</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{%url 'logout'%}" class="nav-link">Logout</a>
                 </li>
             </ul>
         </div>
