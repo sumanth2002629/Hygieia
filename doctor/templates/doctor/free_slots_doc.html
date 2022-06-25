@@ -9,7 +9,7 @@
       <form id="free_slots">
         Free Slots(For 15 minutes):
         <br>
-        <input type="time" id="appt0" name="appt0">
+        <input type="datetime-local" id="appt0" name="appt0">
         <br>
 
         
@@ -26,7 +26,7 @@
           var add = function() {
 
                 var x = document.createElement("INPUT");
-                x.setAttribute("type", "time");
+                x.setAttribute("type", "datetime-local");
                 x.setAttribute("name", "appt" + Math.floor(document.getElementById("free_slots").childElementCount/2))// divide by 2 bcz of the brs
                 document.getElementById("free_slots").appendChild(x);
                 document.getElementById("free_slots").appendChild(document.createElement("br"));
