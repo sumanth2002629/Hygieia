@@ -97,6 +97,9 @@
   #profile {
     font-size: min(25px, 2vw);
   }
+  #purple{
+    color: #6b63fe;
+  }
 </style>
 <section
   class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
@@ -110,7 +113,7 @@
           now it has become unsafe to go to the hospital every time you feel
           sick. There is a chance of getting infected by covid in the hospital.
         </p>
-        <button class="btn btn-primary btn-lg">Get Started!</button>
+        <button class="btn btn-primary btn-lg" ><a href="{%url 'login'%}" style="text-decoration: none; color:white">Get Started!</a></button>
       </div>
       <img src="{% static 'images/health.svg' %}" />
     </div>
@@ -188,12 +191,12 @@
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
           <img
-            src="{% static 'images/portfolio.svg' %}"
+            src="{% static 'images/heart.svg' %}"
             class="d-block w-100"
             alt="assets/portfolio.svg"
           />
           <div class="carousel-caption">
-            <h5>Showcase your Portfolio</h5>
+            <h5>Self Diagnose</h5>
             <p></p>
           </div>
         </div>
@@ -204,7 +207,7 @@
             alt="assets/portfolio.svg"
           />
           <div class="carousel-caption">
-            <h5>List Hiring Details</h5>
+            <h5>Book Slots</h5>
             <p></p>
           </div>
         </div>
@@ -215,7 +218,7 @@
             alt="assets/portfolio.svg"
           />
           <div class="carousel-caption">
-            <h5>Conduct Interviews & Meetings</h5>
+            <h5>Connect with Doctors</h5>
             <p></p>
           </div>
         </div>
