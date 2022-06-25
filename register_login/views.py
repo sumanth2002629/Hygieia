@@ -9,7 +9,7 @@ def signup_doctor(request):
         if form.is_valid():
             form.save()
 
-            return redirect('base-home')
+            return redirect('doctor')
 
     else:
         form = DoctorSignUpForm()
@@ -32,6 +32,20 @@ def signup_patient(request):
 
 
 
-
+def profile(request):
+    if not request.user.is_authenticated:
+        return render(request, 'register_login/login.html')
+    
+    username = request.user.username
+    
+    if Doctor.objects.filter(user=request.user):
+        # Go to recruiter home page
+       
+        details = Doctor.objects.get(user=request.user)
+        return redirect('doctor-home')
+    else:
+        #change this to patient
+        dets = Pcell.objects.get(username=username)
+        return render(request, '../../pcell/templates/pcellProfile.html',{"details":dets})
 
 
