@@ -3,24 +3,42 @@
 {%block content%}      
 <br><br><br><br>
 
-       <table>
+       
          {% for slot in available %}
-         <tr>
+         
 
-            <td>
-               <form id="slots{{slot.id}}">
-                  <label>{{slot.time}}</label>
-                  <label>{{slot.patient_name}}</label>
-                  <input type="hidden" name="apptno" value="{{slot.id}}"/>
-                  <input type="submit" value="Delete Row" >
-               </form>
+            
+              
 
-            </td>
+            
  
             <!-- <td>
                <input type="submit" value="Delete Row" onclick="SomeDeleteRowFunction(this,'{{slot.time}}')">
              </td> -->
-          </tr>
+          
+
+          <div class="card">
+            <div class="card-header bg-dark text-white" >
+               {{slot.time}}
+            </div>
+            <div class="card-body">
+
+              <form id="slots{{slot.id}}">
+               <h5 class="card-title">
+                  {% if slot.patient_name%}
+                     Patient Name: {{slot.patient_name}}
+                  {%else%}
+                     Not Booked
+                  {%endif%}
+      
+
+               </h5>
+               <input type="hidden" name="apptno" value="{{slot.id}}"/>
+               <input type="submit" value="Delete this slot"  class="btn btn-primary" style="background-color: #A020F0;">
+            </form>
+            </div>
+          </div>
+          <br><br>
 
           <script>
                function SomeDeleteRowFunction(o,time) {
@@ -36,6 +54,6 @@
           
          {%endfor %}
         
-       </table>
+      
 
 {%endblock content%}

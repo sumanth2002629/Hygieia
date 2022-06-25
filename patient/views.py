@@ -48,5 +48,6 @@ def patient_view_slots(request,doc_name):
     
     print(doc_name)
     available =  Free_Slots.objects.filter(doc_username=doc_name)
+    available = available.filter(is_booked=False)
     print(available)
     return render(request, 'patient/patient_view_slots.html',{"available_slots":available})
