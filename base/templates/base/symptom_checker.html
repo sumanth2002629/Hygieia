@@ -1,84 +1,189 @@
-<!DOCTYPE html>
-<html>
-   <body>
-      <head>
-         <title>HTML Forms</title>
-      </head>
+{%extends "patient/home.html" %} {% load static %} {%block content%} 
+{% comment%} <!DOCTYPE html>
+{% comment %} <html>
+  <body>
+    <head>
+      <title>HTML Forms</title>
+    </head>
+    {% if flag == 0 %}
+
+    <form>
+      <br />
+      <label for="body-locations"> Body Location</label>
+      <select name="body_locations" id="body_locations">
+        <option value="Abdomen, pelvis & buttocks">
+          Abdomen, pelvis & buttocks
+        </option>
+        <option value="Arms & shoulder">Arms & shoulder</option>
+        <option value="Chest & back">Chest & back</option>
+        <option value="Legs">Legs</option>
+        <option value="Head, throat & neck">Head, throat & neck</option>
+
+        <option value="Skin, joints & general">Skin, joints & general</option>
+      </select>
+      <br />
+
+      <br /><br />
+      <input type="submit" value="SUBMIT" />
+    </form>
+    {% elif flag == 1 %}
+    <form>
+      <br />
+      <label for="body_subloctions"> Body SubLocation</label>
+      <select name="body_sublocations" id="body_sublocations">
+        {% for i in sublocations %}
+
+        <option value="{{i}}">{{i}}</option>
+        {%endfor%}
+      </select>
+      <br />
+
+      <br /><br />
+      <input type="submit" value="SUBMIT" />
+    </form>
+
+    {% elif flag == 2 %}
+    <form>
+      <br />
+      <label for="symptoms"> Symptoms</label>
+      <select name="symptoms" id="symptoms">
+        {% for i in symptoms %}
+
+        <option value="{{i}}">{{i}}</option>
+        {%endfor%}
+      </select>
+      <br />
+
+      <br /><br />
+      <input type="submit" value="SUBMIT" />
+    </form>
+
+    {% elif flag == 3 %} {% for i in diagnosis %}
+    <p>Name: {{i.0}} - {{i.1}}%</p>
+
+    <p>Specialisation: {{i.2}}</p>
+    <br /><br /><br />
+    {%endfor%} {%if not diagnosis%}
+    <p>Nothing in our database. Sorry!</p>
+    {%endif%} {% endif %}
+  </body>
+</html>
+{% endcomment %} 
+
+<style>
+  #profile {
+    color: #6b63fe;
+  }
+
+  #Text {
+    color: #212529;
+  }
+</style>
+
+<br />
+<br />
+<br /><br /><br /><br />
+
+<div
+  id="formbox"
+  class="bg-dark text-light container d-flex justify-content-center mb-3re"
+>
+  <div>
+    <br />
+    <h1 id="regText">Self Diagnose</h1>
+    <br />
+  </div>
+  <div id="aligndiv" class="text-light d-flex">
+    <div class="d-none d-md-block p-2">
+      <img
+        src="{% static 'images/medicine.svg' %}"
+        class="d-block w-100"
+        alt="images/medicine.svg"
+      />
+    </div>
+  </div>
+
+  <div id="aligndiv" class="bg-light text-dark" style="border-radius: 25px">
+    <div id="profilediv" class="p-2">
+      <br />
+      <h5 style="text-align: center" id="profile1">
+        <span id="Text" class="extra" style="font-weight: bolder">Your </span
+        >Symptoms
+      </h5>
+      <br /><br /><br />
+
       {% if flag == 0 %}
-      
+
       <form>
-        <br> 
-         <label for="body-locations"> Body Location</label>
+        <br />
+        <label for="body-locations"> Body Location</label>
         <select name="body_locations" id="body_locations">
-          
-            <option value="Abdomen, pelvis & buttocks">Abdomen, pelvis & buttocks</option>
+          <option value="Abdomen, pelvis & buttocks">
+            Abdomen, pelvis & buttocks
+          </option>
           <option value="Arms & shoulder">Arms & shoulder</option>
           <option value="Chest & back">Chest & back</option>
           <option value="Legs">Legs</option>
           <option value="Head, throat & neck">Head, throat & neck</option>
-          
+
           <option value="Skin, joints & general">Skin, joints & general</option>
         </select>
-         <br>
-        
-         <br><br>
-         <input type="submit" value="SUBMIT">
+        <br />
 
+        <br /><br />
+        <input type="submit" value="SUBMIT" />
       </form>
       {% elif flag == 1 %}
       <form>
-        <br> 
-         <label for="body_subloctions"> Body SubLocation</label>
+        <br />
+        <label for="body_subloctions"> Body SubLocation</label>
         <select name="body_sublocations" id="body_sublocations">
-
           {% for i in sublocations %}
 
           <option value="{{i}}">{{i}}</option>
           {%endfor%}
-          
-            
         </select>
-         <br>
-        
-         <br><br>
-         <input type="submit" value="SUBMIT">
+        <br />
 
+        <br /><br />
+        <input type="submit" value="SUBMIT" />
       </form>
 
       {% elif flag == 2 %}
       <form>
-        <br> 
-         <label for="symptoms"> Symptoms</label>
+        <br />
+        <label for="symptoms"> Symptoms</label>
         <select name="symptoms" id="symptoms">
+          {% if symptoms%} {% for i in symptoms %}
 
-          {% for i in symptoms %}
+          <option value="{{i}}">{{i}}</option>
+          {%endfor%} {% else%}
+          <p>Nothing in our database. Sorry!</p>
 
-          <option value={{i}}>{{i}}</option>
-          {%endfor%}
-          
-            
+          {% endif%}
         </select>
-         <br>
-        
-         <br><br>
-         <input type="submit" value="SUBMIT">
+        <br />
 
+        <br /><br />
+        <input type="submit" value="SUBMIT" />
       </form>
 
-      {% elif flag == 3 %}
+      {% elif flag == 3 %} {% for i in diagnosis %}
+      <p>Name: {{i.0}} - {{i.1}}%</p>
 
-        {% for i in diagnosis %}
-          <p>Name: {{i.0}} - {{i.1}}%</p>
-          
-          <p>Specialisation: {{i.2}}</p>
-          <br><br><br>
-        {%endfor%}
+      <p>Specialisation: {{i.2}}</p>
+      <br /><br /><br />
+      {%endfor%} {%if not diagnosis%}
+      <p>Nothing in our database. Sorry!</p>
 
-        {%if not diagnosis%}
-        <p>Nothing in our database. Sorry!</p>
-        {%endif%}
+      {%endif%} {% endif %}
+    </div>
+  </div>
+</div>
 
-      {% endif %}
-      
-   </body>
-</html>
+<div class="container d-flex justify-content-center">
+  <small class="text-muted"> </small>
+</div>
+
+<br /><br /><br />
+{%endblock content%}

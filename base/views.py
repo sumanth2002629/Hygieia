@@ -7,13 +7,14 @@ from .models import RoomMember
 import json
 from django.views.decorators.csrf import csrf_exempt
 
-from base.api_class import PriaidDiagnosisClientMine 
+from base.api_class import PriaidDiagnosisClientMine
 import base.PriaidDiagnosisClient as PriaidDiagnosisClient
 
+flag = 0
+bodySublocations = []
+symptoms = []
 
-flag=0
-bodySublocations=[]
-symptoms=[]
+
 # Create your views here.
 def home(request):
     return render(request, 'base/home.html')
@@ -77,90 +78,77 @@ def deleteMember(request):
     member.delete()
     return JsonResponse('Member deleted', safe=False)
 
+
 def symptom_checker(request):
-    
     api = PriaidDiagnosisClientMine()
     global flag
-    locid=0
-    sublocid=0
-    symptom_id=0
+    locid = 0
+    sublocid = 0
+    symptom_id = 0
     global bodySublocations
     global symptoms
-    if flag==0:
-        
-        flag=1
-        return render(request,"base/symptom_checker.html",{"flag":0})
+    if flag == 0:
 
-    elif flag==1:
+        flag = 1
+        return render(request, "base/symptom_checker.html", {"flag": 0})
+
+    elif flag == 1:
         bodyLocations = api._diagnosisClient.loadBodyLocations()
         if ("body_locations" not in request.GET):
-            flag=0
-            return render(request,"base/symptom_checker.html",{"flag":0})
+            flag = 0
+            return render(request, "base/symptom_checker.html", {"flag": 0})
 
         body_loc = request.GET["body_locations"]
-        flag=2
+        flag = 2
         for i in bodyLocations:
-            if i["Name"]==body_loc:
+            if i["Name"] == body_loc:
                 locid = i["ID"]
 
-        bodySublocations=api._diagnosisClient.loadBodySubLocations(locid)
-        to_html=[i["Name"] for i in bodySublocations]
-        flag=2
-        return render(request,"base/symptom_checker.html",{"flag":1,"sublocations":to_html})
-    
-    elif flag==2:
+        bodySublocations = api._diagnosisClient.loadBodySubLocations(locid)
+        to_html = [i["Name"] for i in bodySublocations]
+        flag = 2
+        return render(request, "base/symptom_checker.html", {"flag": 1, "sublocations": to_html})
+
+    elif flag == 2:
         body_subloc = request.GET["body_sublocations"]
         print(body_subloc)
         # bodySubLocations = api._diagnosisClient.loadBodySubLocations(locid)
         for i in bodySublocations:
-            if i["Name"]==body_subloc:
+            if i["Name"] == body_subloc:
                 sublocid = i["ID"]
 
         print(sublocid)
 
         symptoms = api._diagnosisClient.loadSublocationSymptoms(sublocid, PriaidDiagnosisClient.SelectorStatus.Man)
-        flag=3
-        to_html=[i["Name"] for i in symptoms]
-        return render(request,"base/symptom_checker.html",{"flag":2,"symptoms":to_html})
+        flag = 3
+        to_html = [i["Name"] for i in symptoms]
+        return render(request, "base/symptom_checker.html", {"flag": 2, "symptoms": to_html})
 
-    elif flag==3:
+    elif flag == 3:
         if "symptoms" not in request.GET:
-            return render(request,"base/symptom_checker.html",{"flag":3,"diagnosis":[]})
+            return render(request, "base/symptom_checker.html", {"flag": 3, "diagnosis": []})
         selected_symp = request.GET["symptoms"]
-        flag=0
+        flag = 0
         for i in symptoms:
-            if i["Name"]==selected_symp:
-                symptom_id=i["ID"]
+            if i["Name"] == selected_symp:
+                symptom_id = i["ID"]
 
         selectedSymptomsIds = [symptom_id]
-        #change this based on gender and birth year of patient
+        # change this based on gender and birth year of patient
         diagnosis = api._diagnosisClient.loadDiagnosis(selectedSymptomsIds, PriaidDiagnosisClient.Gender.Male, 1988)
 
-        to_html=[]
+        to_html = []
         for d in diagnosis:
             specialisations = []
             for specialisation in d["Specialisation"]:
                 specialisations.append(specialisation["Name"])
-            print("{0} - {1}% \nSpecialisations : {2}\n".format(d["Issue"]["Name"], d["Issue"]["Accuracy"],  ",".join(x for x in specialisations)))
+            print("{0} - {1}% \nSpecialisations : {2}\n".format(d["Issue"]["Name"], d["Issue"]["Accuracy"],
+                                                                ",".join(x for x in specialisations)))
 
+            to_html.append([d["Issue"]["Name"], d["Issue"]["Accuracy"], ",".join(x for x in specialisations)])
 
+            # print(to_html[0])
+        return render(request, "base/symptom_checker.html", {"flag": 3, "diagnosis": to_html})
 
-            to_html.append([d["Issue"]["Name"], d["Issue"]["Accuracy"],  ",".join(x for x in specialisations)]) 
-
-        # print(to_html[0])
-        return render(request,"base/symptom_checker.html",{"flag":3,"diagnosis":to_html})
-
-
-
-
-    flag=0
-    return render(request,"base/symptom_checker.html",{"flag":0})
-
-
-        
-
-
-
-        
-
-    
+    flag = 0
+    return render(request, "base/symptom_checker.html", {"flag": 0})
