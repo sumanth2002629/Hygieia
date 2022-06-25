@@ -1,0 +1,21 @@
+{%extends "register_login/base.html" %}
+{% load static %}
+{%block content%}
+<br><br><br><br><br><br>
+<div id="formbox" class=" bg-dark text-light container d-flex justify-content-center mb-3re">
+    <div id="aligndiv" class=" text-light d-flex">
+        <div class="p-2"><img src="{% static 'images/logout.svg' %}" class="d-block w-100" alt="assets/portfolio.svg"></div>
+    </div>
+
+    <div id="aligndiv" class="bg-dark text-light" style="border-radius: 25px;">
+        <h1> You have<span id="carouselText"> Logged </span>out!</h1>
+    </div>
+
+</div>
+
+<div class="container d-flex justify-content-center">
+    <small class="text-muted">
+        Need an account? <a href="{% url 'login' %}" class="ml-2">Login Again</a>
+    </small>
+</div>
+{%endblock content%}

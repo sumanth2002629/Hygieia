@@ -1,0 +1,45 @@
+{%extends "register_login/base.html"%}
+{%load static%}
+{%load crispy_forms_tags%}
+
+{%block content%}
+    <div class="content-section">
+        <form method="POST">
+            {%csrf_token%}
+            <filedset class="form-group">
+                <legend class="border-bottom mb-4">Join Today</legend>
+                <div>
+                    <br>
+                    <h1 id="regText">Join Us!</h1>
+                    <br>
+                </div>
+                <div id="formbox" class=" bg-dark text-light container d-flex justify-content-center mb-3re">
+                    <div id="aligndiv" class=" text-light d-flex">
+                        <div class="d-none d-md-block p-2"><img src="{% static 'images/doctor_register.svg' %}" class="d-block w-100" alt="assets/portfolio.svg"></div>
+                    
+                    </div>
+
+                    <div id="aligndiv" class="bg-light text-dark" style="border-radius: 25px;">
+                        <div class="p-2">{{form | crispy}}</div>
+                    </div>
+
+                </div>
+                
+            </filedset>
+
+            <div class="form-group container d-flex justify-content-center">
+                <button id="mybtn" class=" pt-2 btn btn-light btn-lg" type="submit">Sign up</button>
+            </div>   
+
+            <div class="container d-flex justify-content-center">
+                <small class="text-muted">
+                    Already Have an account? <a href="{%url 'base-home'%}" class="ml-2">Sign In</a>
+                </small>
+            </div>
+            
+        </form>
+        <div class="border-top pt-3">
+            
+        </div>
+    </div>
+{%endblock content%}
