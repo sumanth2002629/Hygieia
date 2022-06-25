@@ -19,16 +19,21 @@ def signup_doctor(request):
 
 
 def signup_patient(request):
-    form1 = PatientSignUpForm(request.POST)
+    
     if request.method == 'POST':
-        if form1.is_valid():
-            form1.save()
-            print("Form submitted")
-            return redirect('login')
-        else:
-            form1 = PatientSignUpForm()
+        form = PatientSignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
 
-    return render(request, 'register_login/signup_patient.html', {'form': form1})
+            return redirect('login')
+
+    else:
+        form = PatientSignUpForm()
+
+    return render(request,'register_login/signup_patient.html',{'form':form})
+
+    
+
 
 
 def profile(request):
@@ -43,6 +48,7 @@ def profile(request):
         details = Doctor.objects.get(user=request.user)
         return redirect('doctor-home')
     else:
-        # change this to patient
-        dets = Pcell.objects.get(username=username)
-        return render(request, '../../pcell/templates/pcellProfile.html', {"details": dets})
+        # pass
+        #change this to patient
+        details = Patient.objects.get(user=request.user)
+        return redirect('patient-home')
