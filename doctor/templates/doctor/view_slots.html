@@ -3,6 +3,7 @@
 {%block content%}      
 <br><br><br><br>
 
+         {%if available%}
        
          {% for slot in available %}
          
@@ -53,6 +54,22 @@
         </script>
           
          {%endfor %}
+
+      {%else%}
+
+      <br><br><br><br><br><br>
+<div id="formbox" class=" bg-dark text-light container d-flex justify-content-center mb-3re">
+    <div id="aligndiv" class=" text-light d-flex">
+        <div class="p-2"><img src="{% static 'images/logout.svg' %}" class="d-block w-100" alt="assets/portfolio.svg"></div>
+    </div>
+
+    <div id="aligndiv" class="bg-dark text-light" style="border-radius: 25px;">
+        <h1> Please<span id="carouselText"> Book</span>slots!</h1>
+    </div>
+
+</div>
+
+{%endif%}
         
       
 
