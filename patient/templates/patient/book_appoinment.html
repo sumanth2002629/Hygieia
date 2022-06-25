@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <head>
+         <title></title>
+      </head>
+      <p></p>
+      
+     
+      <form id="form"> 
+        <input type="search" id="query" name="specialisation" placeholder="Search by specialisation">
+        <button>Search</button>
+      </form>
+
+      <table>
+        {% for doc in available_doctors %}
+        <tr>
+
+           <td>
+              <form id="doc">
+                 <label>{{doc.user.username}}</label>
+                 <input type="hidden" name="apptno" value="{{doc.user.id}}"/>
+                 <input type="submit" value="View Available Slots" >
+              </form>
+
+           </td>
+
+           <!-- <td>
+              <input type="submit" value="Delete Row" onclick="SomeDeleteRowFunction(this,'{{slot.time}}')">
+            </td> -->
+         </tr>
+         
+        {%endfor %}
+       
+
+
+   </body>
+</html>
