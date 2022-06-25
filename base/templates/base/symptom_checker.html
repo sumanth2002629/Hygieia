@@ -1,74 +1,4 @@
 {%extends "patient/home.html" %} {% load static %} {%block content%} 
-{% comment%} <!DOCTYPE html>
-{% comment %} <html>
-  <body>
-    <head>
-      <title>HTML Forms</title>
-    </head>
-    {% if flag == 0 %}
-
-    <form>
-      <br />
-      <label for="body-locations"> Body Location</label>
-      <select name="body_locations" id="body_locations">
-        <option value="Abdomen, pelvis & buttocks">
-          Abdomen, pelvis & buttocks
-        </option>
-        <option value="Arms & shoulder">Arms & shoulder</option>
-        <option value="Chest & back">Chest & back</option>
-        <option value="Legs">Legs</option>
-        <option value="Head, throat & neck">Head, throat & neck</option>
-
-        <option value="Skin, joints & general">Skin, joints & general</option>
-      </select>
-      <br />
-
-      <br /><br />
-      <input type="submit" value="SUBMIT" />
-    </form>
-    {% elif flag == 1 %}
-    <form>
-      <br />
-      <label for="body_subloctions"> Body SubLocation</label>
-      <select name="body_sublocations" id="body_sublocations">
-        {% for i in sublocations %}
-
-        <option value="{{i}}">{{i}}</option>
-        {%endfor%}
-      </select>
-      <br />
-
-      <br /><br />
-      <input type="submit" value="SUBMIT" />
-    </form>
-
-    {% elif flag == 2 %}
-    <form>
-      <br />
-      <label for="symptoms"> Symptoms</label>
-      <select name="symptoms" id="symptoms">
-        {% for i in symptoms %}
-
-        <option value="{{i}}">{{i}}</option>
-        {%endfor%}
-      </select>
-      <br />
-
-      <br /><br />
-      <input type="submit" value="SUBMIT" />
-    </form>
-
-    {% elif flag == 3 %} {% for i in diagnosis %}
-    <p>Name: {{i.0}} - {{i.1}}%</p>
-
-    <p>Specialisation: {{i.2}}</p>
-    <br /><br /><br />
-    {%endfor%} {%if not diagnosis%}
-    <p>Nothing in our database. Sorry!</p>
-    {%endif%} {% endif %}
-  </body>
-</html>
-{% endcomment %} 
 
 <style>
   #profile {
@@ -77,6 +7,106 @@
 
   #Text {
     color: #212529;
+  }
+  #carouselExampleDark {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    max-width: 500px;
+  }
+
+  .carousel-caption {
+    top: 0;
+    bottom: auto;
+    font-size: 2.5vw;
+  }
+
+  .abovecar {
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    font-size: clamp(20px, 5vw, 30px);
+  }
+
+  #carouselText {
+    font-family: "Roboto Mono", monospace;
+    color: #6b63fe;
+  }
+
+  #mybtn {
+    font-family: "Roboto Mono", monospace;
+    color: #6b63fe;
+    border: 2px solid #2f2e40;
+  }
+
+  #mybtn:hover {
+    background-color: #2f2e40;
+    cursor: pointer;
+  }
+
+  #mybtn2 {
+    margin: auto;
+    font-family: "Roboto Mono", monospace;
+    color: #f8f9fb;
+  }
+
+  #mybtn2:hover {
+    background-color: #f8f9fb;
+    color: #6b63fe;
+    cursor: pointer;
+  }
+
+  #regText {
+    font-family: "Roboto Mono", monospace;
+    color: #6b63fe;
+    text-align: center;
+    font-weight: bold;
+    font-size: min(100px, 7vw);
+  }
+
+  #robotofont {
+    font-family: "Roboto Mono", monospace;
+  }
+
+  #outsidecar {
+    background-color: white;
+    color: white;
+  }
+
+  #formbox {
+    max-width: min(1000px, 60%);
+    margin: auto;
+    /* background-color: red; */
+    border-radius: 25px;
+    border: 2px solid black;
+    padding: 20px;
+  }
+
+  #aligndiv {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  #aligndiv2 {
+    display: flex 2 1 auto;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-link:hover {
+    border-radius: 10%;
+    background-color: #6b63fe;
+  }
+
+  #profilediv {
+    text-align: left;
+  }
+
+  #profile {
+    font-size: min(25px, 2vw);
+  }
+  #purple {
+    color: #6b63fe;
   }
 </style>
 
@@ -169,9 +199,11 @@
       </form>
 
       {% elif flag == 3 %} {% for i in diagnosis %}
-      <p>Name: {{i.0}} - {{i.1}}%</p>
+      <p id="profile">Name: {{i.0}} - <span id="Text" class="extra"
+        style="font-weight:bolder;">{{i.1}}% </span></p>
 
-      <p>Specialisation: {{i.2}}</p>
+      <p id="profile">Specialisation: <span id="Text" class="extra"
+        style="font-weight:bolder;">{{i.2}} </span></p>
       <br /><br /><br />
       {%endfor%} {%if not diagnosis%}
       <p>Nothing in our database. Sorry!</p>

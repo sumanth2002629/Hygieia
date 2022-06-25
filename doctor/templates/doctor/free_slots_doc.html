@@ -116,15 +116,14 @@
     color: white;
   }
 
-
   .button1 {
-    background-color: white; 
-    color: black; 
-    border: 2px solid #4CAF50;
+    background-color: white;
+    color: black;
+    border: 2px solid #4caf50;
   }
-  
+
   .button1:hover {
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
   }
 </style>
@@ -175,7 +174,14 @@
         Add
       </button>
       <br />
-      <button  style="margin-left: 65px;" type="submit" form="free_slots" class="button button1">Submit</button>
+      <button
+        style="margin-left: 65px"
+        type="submit"
+        form="free_slots"
+        class="button button1"
+      >
+        Submit
+      </button>
       <script>
         var add = function () {
           var x = document.createElement("INPUT");
@@ -200,33 +206,4 @@
 <div class="container d-flex justify-content-center">
   <small class="text-muted"> </small>
 </div>
-{% comment %}
-<br /><br /><br />
-<br /><br /><br /><br />
-<form id="free_slots">
-  Free Slots(For 15 minutes):
-  <br />
-  <input type="datetime-local" id="appt0" name="appt0" />
-  <br />
-</form>
-<button onclick="add()">Add</button>
-<br /><br /><br /><br />
-
-<input type="submit" form="free_slots" value="SUBMIT" />
-
-<script>
-  var add = function () {
-    var x = document.createElement("INPUT");
-    x.setAttribute("type", "datetime-local");
-    x.setAttribute(
-      "name",
-      "appt" +
-        Math.floor(document.getElementById("free_slots").childElementCount / 2)
-    ); // divide by 2 bcz of the brs
-    document.getElementById("free_slots").appendChild(x);
-    document
-      .getElementById("free_slots")
-      .appendChild(document.createElement("br"));
-  };
-</script>
-{% endcomment %} {%endblock content%}
+{%endblock content%}

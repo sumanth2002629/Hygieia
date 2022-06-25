@@ -2,34 +2,67 @@
 {%load static%}
 {%block content%} 
       
-     
+
      
 <br><br><br><br>
 
       {%if available_slots%}
-       <table>
-         {% for slot in available_slots %}
-         <tr>
 
-            <td>
-               <form id="slots{{slot.id}}">
-                  <label>{{slot.time}}</label>
+      <style>
+         #profile{
+             color:#6B63FE;
+         }
+     
+         #Text{
+             color:#212529;
+         }
+       
+     </style>
+     
+     <br>
+     <br>
+     <br><br><br><br>
+     
+     
+     <div id="formbox" class=" bg-dark text-light container d-flex justify-content-center mb-3re">
+         <div>
+             <br>
+             <h1 id="regText" >View Slots</h1>
+             <br>
+         </div>
+         <div id="aligndiv" class=" text-light d-flex">
+             
+             <div class="d-none d-md-block p-2"><img src="{% static 'images/profile1.svg' %}" class="d-block w-100"
+                                                     alt="assets/portfolio.svg"></div>
+     
+         </div>
+     
+         <div id="aligndiv" class="bg-light text-dark" style="border-radius: 25px;">
+             <div id="profilediv" class="p-2">
+                 <br>
+                 <h5 style="text-align: center" id="profile1"><span id="Text" class="extra" style="font-weight:bolder;">Slots
+                 </h5>
+                 <br>
+                 {% for slot in available_slots %}
+                 <form id="slots{{slot.id}}">
+                  <label id="profile">Date & Time<br/><span id="Text" class="extra"
+                     style="font-weight:bolder;">{{slot.time}} </span></label>
                   <input type="hidden" name="apptno" value="{{slot.id}}"/>
-                  <input type="submit" value="Book Appoinment" >
+                  <input type="submit" style="margin-left: 25px" value="Book Appoinment" >
                </form>
+                 {% endfor %}
+                
+             </div>
+         </div>
+     </div>
+     
+     <div class="container d-flex justify-content-center">
+         <small class="text-muted">
+         </small>
+     </div>
+     
+     <br><br><br>
 
-               
-
-            </td>
- 
-            <!-- <td>
-               <input type="submit" value="Delete Row" onclick="SomeDeleteRowFunction(this,'{{slot.time}}')">
-             </td> -->
-          </tr>
-          
-         {%endfor %}
-        
-       </table>
        {%else%}
 
        <br><br><br><br><br><br>
