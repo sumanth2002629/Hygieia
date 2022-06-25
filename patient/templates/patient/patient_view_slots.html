@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <head>
+         <title>Post available slots</title>
+      </head>
+      
+     
+     
+
+
+       <table>
+         {% for slot in available_slots %}
+         <tr>
+
+            <td>
+               <form id="slots{{slot.id}}">
+                  <label>{{slot.time}}</label>
+                  <input type="hidden" name="apptno" value="{{slot.id}}"/>
+                  <input type="submit" value="Book Appoinment" >
+               </form>
+
+            </td>
+ 
+            <!-- <td>
+               <input type="submit" value="Delete Row" onclick="SomeDeleteRowFunction(this,'{{slot.time}}')">
+             </td> -->
+          </tr>
+          
+         {%endfor %}
+        
+       </table>
+
+       <script>
+         function SomeDeleteRowFunction(o,time) {
+            console.log('slots'+time)
+            
+            var p=o.parentNode.parentNode;
+            p.parentNode.removeChild(p);
+            document.getElementById('slots'+time).submit();
+
+              
+         }
+         </script>
+      
+     
+
+      
+     
+      
+   </body>
+</html>

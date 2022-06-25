@@ -1,7 +1,7 @@
 from xml.etree.ElementTree import fromstring
 from django.shortcuts import render
 from doctor.models import Free_Slots
-from register_login.models import Doctor
+from register_login.models import Doctor,Patient
 
 # Create your views here.
 
@@ -30,7 +30,7 @@ def add_slots(request):
 
     #testing
     for i in Free_Slots.objects.all():
-        print(i.doc_username, i.time,i.id)
+        print(i.doc_username, i.time,i.id,i.is_booked,i.patient_name)
 
     return render(request,"doctor/free_slots_doc.html")
 
