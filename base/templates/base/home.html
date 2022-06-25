@@ -97,7 +97,7 @@
   #profile {
     font-size: min(25px, 2vw);
   }
-  #purple{
+  #purple {
     color: #6b63fe;
   }
 </style>
@@ -113,7 +113,11 @@
           now it has become unsafe to go to the hospital every time you feel
           sick. There is a chance of getting infected by covid in the hospital.
         </p>
-        <button class="btn btn-primary btn-lg" ><a href="{%url 'login'%}" style="text-decoration: none; color:white">Get Started!</a></button>
+        <button class="btn btn-primary btn-lg">
+          <a href="{%url 'login'%}" style="text-decoration: none; color: white"
+            >Get Started!</a
+          >
+        </button>
       </div>
       <img src="{% static 'images/health.svg' %}" />
     </div>
