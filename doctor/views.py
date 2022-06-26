@@ -1,7 +1,8 @@
 from xml.etree.ElementTree import fromstring
 from django.shortcuts import render,redirect
 from doctor.models import Free_Slots
-from register_login.models import Doctor,Patient
+from register_login.models import Doctor,Patient,User
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -40,9 +41,25 @@ def view_slots(request):
     #get username actually from cookie or something
     print(request.GET)
     # print(request.POST)
-
-
+   
     if "apptno" in request.GET:
+        slot = Free_Slots.objects.get(id=int(request.GET["apptno"]))
+
+        if slot.is_booked:
+            prescription = request.GET['prescription']
+            date  = slot.time
+            subject = "Prescription"
+            message = "Hello Maam/Sir\n Here is your prescription for appointment sceduled on " +str(date) +"\n Prescription:\n" + prescription
+            patient_emailid = User.objects.get(username = slot.patient_name).email
+            send_mail (
+                subject,
+                message,
+                "hygieahh2@outlook.com",
+                [patient_emailid],
+                fail_silently=False,
+
+
+            )
         Free_Slots.objects.get(id=int(request.GET['apptno'])).delete()
 
     username= request.user.username

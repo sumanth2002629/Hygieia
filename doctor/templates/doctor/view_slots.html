@@ -36,9 +36,19 @@
                </h5>
                {% if slot.room_id %}
                <p class="card-text">Room ID: {{slot.room_id}}</p>
+               <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Prescription</label>
+                  <textarea class="form-control" id="prescription" name="prescription" placeholder="Enter prescription" rows="3"></textarea>
+                </div>
                {% endif %}
                <input type="hidden" name="apptno" value="{{slot.id}}"/>
+               {% if slot.patient_name %}
+               <input type="submit" value="Submit prescription"  class="btn btn-primary" style="background-color: #A020F0;">
+
+               {%else%}
                <input type="submit" value="Delete this slot"  class="btn btn-primary" style="background-color: #A020F0;">
+                {%endif%}
+              
             </form>
             </div>
           </div>
