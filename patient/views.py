@@ -41,11 +41,13 @@ def book_appoinment(request):
         slot.save()
         subject = "Hygiea: Room Id for video call"
         message = "Hello sir/ma'am,\n This email is to provide you with the room id for ur appoinment with Dr. "+slot.doc_username+" on "+str(slot.time)+"\n Room ID: "+slot.room_id
+        patient_emailid = User.objects.get(username = slot.patient_name).email
+        print(patient_emailid)
         send_mail (
             subject,
             message,
             "hygieahh2@outlook.com",
-            ['sumanth.badam@iiitb.ac.in',"sooraj2.sathish@gmail"],
+            [patient_emailid],
             fail_silently=False,
 
 
