@@ -129,3 +129,12 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'profile'
+
+#email settings
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'hygieahh2@outlook.com'
+EMAIL_HOST_PASSWORD = 'sooraj123'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
