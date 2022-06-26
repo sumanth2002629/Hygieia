@@ -1,5 +1,5 @@
 from xml.etree.ElementTree import fromstring
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from doctor.models import Free_Slots
 from register_login.models import Doctor,Patient
 
@@ -26,6 +26,8 @@ def add_slots(request):
            
 
             fs.save()
+
+        return redirect('doctor-home')
             
 
     #testing

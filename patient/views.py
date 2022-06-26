@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
+from django.core.mail import send_mail
 from register_login.models import Doctor,User,Patient
 from doctor.models import Free_Slots
+import random,string
+
 
 # Create your views here.
 
@@ -33,7 +36,27 @@ def book_appoinment(request):
         print(slot)
         slot.is_booked = True
         slot.patient_name = request.user.username
+        slot.room_id = ''.join(random.choices(string.ascii_uppercase +
+                             string.digits, k = 6))
         slot.save()
+        subject = "Hygiea: Room Id for video call"
+        message = "Hello sir/ma'am,\n This email is to provide you with the room id for ur appoinment with"+slot.doc_username+" on "+str(slot.time)+"\n Room ID: "+slot.room_id
+        # send_mail(
+        #     subject,
+        #     message,
+        #     "sooraj.sathish@iiitb.ac.in",
+        #     ['sumanth.badam@iiitb.ac.in'],
+        #     fail_silently=False,
+
+
+        # )
+    #     send_mail(
+    #     'Subject here',
+    #     'Here is the message.',
+    #     'from@example.com',
+    #     ['to@example.com'],
+    #     fail_silently=False,
+    # )
 
         return redirect("patient-home")
         

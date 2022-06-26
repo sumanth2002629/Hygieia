@@ -34,6 +34,9 @@
       
 
                </h5>
+               {% if slot.room_id %}
+               <p class="card-text">Room ID: {{slot.room_id}}</p>
+               {% endif %}
                <input type="hidden" name="apptno" value="{{slot.id}}"/>
                <input type="submit" value="Delete this slot"  class="btn btn-primary" style="background-color: #A020F0;">
             </form>
