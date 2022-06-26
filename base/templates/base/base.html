@@ -32,6 +32,7 @@
         height: 100px;
         text-align: center;
     }
+
     </style>
 </head>
 <body style="background-image: url({% static 'images/background4.png' %});">
@@ -47,17 +48,6 @@
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 </li>
-                {% comment %} {% if user.is_authenticated %} {% endcomment %}
-                {% comment %}
-                <li class="nav-item">
-                    <a href="{%url 'base-home'%}" class="nav-link">Home</a>
-                </li>
-                {% endcomment %}
-                {% comment %}
-                <li class="nav-item">
-                    <a href="{%url 'base-lobby'%}" class="nav-link">Video Call</a>
-                </li>
-                {% endcomment %}
                 <li class="nav-item">
                     <a href="{%url 'login'%}" class="nav-link">Get Started</a>
                 </li>
@@ -101,9 +91,7 @@
                     <h6 class="text-uppercase fw-bold mb-4">
                         Contact
                     </h6>
-                    <!-- <div style="width:1vw;">
-                     <img src="recruiter/contact.svg" class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                     </div> -->
+
                     <p><i class="fas fa-home me-3"></i> Bangalore, Karnataka, India</p>
                     <p>
                         <i class="fas fa-envelope me-3"></i>

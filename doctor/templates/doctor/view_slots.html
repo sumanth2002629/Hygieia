@@ -1,79 +1,60 @@
-{%extends "doctor/home.html" %}
-{% load static %}
-{%block content%}      
-<br><br><br><br>
+{%extends "doctor/home.html" %} {% load static %} {%block content%}
+<br /><br /><br /><br />
 
-         {%if available%}
-       
-         {% for slot in available %}
-         
+{%if available%} {% for slot in available %}
+<div class="card">
+  <div class="card-header bg-dark text-white">{{slot.time}}</div>
+  <div class="card-body">
+    <form id="slots{{slot.id}}">
+      <h5 class="card-title">
+        {% if slot.patient_name%} Patient Name: {{slot.patient_name}} {%else%}
+        Not Booked {%endif%}
+      </h5>
+      {% if slot.room_id %}
+      <p class="card-text">Room ID: {{slot.room_id}}</p>
+      {% endif %}
+      <input type="hidden" name="apptno" value="{{slot.id}}" />
+      <input
+        type="submit"
+        value="Delete this slot"
+        class="btn btn-primary"
+        style="background-color: #a020f0"
+      />
+    </form>
+  </div>
+</div>
+<br /><br />
 
-            
-              
+<script>
+  function SomeDeleteRowFunction(o, time) {
+    console.log("slots" + time);
 
-            
- 
-            <!-- <td>
-               <input type="submit" value="Delete Row" onclick="SomeDeleteRowFunction(this,'{{slot.time}}')">
-             </td> -->
-          
+    var p = o.parentNode.parentNode;
+    p.parentNode.removeChild(p);
+    document.getElementById("slots" + time).submit();
+  }
+</script>
 
-          <div class="card">
-            <div class="card-header bg-dark text-white" >
-               {{slot.time}}
-            </div>
-            <div class="card-body">
+{%endfor %} {%else%}
 
-              <form id="slots{{slot.id}}">
-               <h5 class="card-title">
-                  {% if slot.patient_name%}
-                     Patient Name: {{slot.patient_name}}
-                  {%else%}
-                     Not Booked
-                  {%endif%}
-      
-
-               </h5>
-               {% if slot.room_id %}
-               <p class="card-text">Room ID: {{slot.room_id}}</p>
-               {% endif %}
-               <input type="hidden" name="apptno" value="{{slot.id}}"/>
-               <input type="submit" value="Delete this slot"  class="btn btn-primary" style="background-color: #A020F0;">
-            </form>
-            </div>
-          </div>
-          <br><br>
-
-          <script>
-               function SomeDeleteRowFunction(o,time) {
-                  console.log('slots'+time)
-                  
-                  var p=o.parentNode.parentNode;
-                  p.parentNode.removeChild(p);
-                  document.getElementById('slots'+time).submit();
-
-                  
-               };
-        </script>
-          
-         {%endfor %}
-
-      {%else%}
-
-      <br><br><br><br><br><br>
-<div id="formbox" class=" bg-dark text-light container d-flex justify-content-center mb-3re">
-    <div id="aligndiv" class=" text-light d-flex">
-        <div class="p-2"><img src="{% static 'images/logout.svg' %}" class="d-block w-100" alt="assets/portfolio.svg"></div>
+<br /><br /><br /><br /><br /><br />
+<div
+  id="formbox"
+  class="bg-dark text-light container d-flex justify-content-center mb-3re"
+>
+  <div id="aligndiv" class="text-light d-flex">
+    <div class="p-2">
+      <img
+        src="{% static 'images/logout.svg' %}"
+        class="d-block w-100"
+        alt="assets/portfolio.svg"
+      />
     </div>
+  </div>
 
-    <div id="aligndiv" class="bg-dark text-light" style="border-radius: 25px;">
-        <h1> Please<span id="carouselText"> Book </span>slots!</h1>
-    </div>
-
+  <div id="aligndiv" class="bg-dark text-light" style="border-radius: 25px">
+    <h1>Please<span id="carouselText"> Book </span>slots!</h1>
+  </div>
 </div>
 
-{%endif%}
-        
-      
-
-{%endblock content%}
+{%endif%} {%endblock content%}
