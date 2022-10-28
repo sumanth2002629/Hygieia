@@ -8,3 +8,6 @@ idna==3.3
 requests==2.27.1
 sqlparse==0.4.2
 urllib3==1.26.8
+django-crispy-forms==1.14.0
+djangorestframework==3.14.0
+django-rest-framework-braces==0.3.4

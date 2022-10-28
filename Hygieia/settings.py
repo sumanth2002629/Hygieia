@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'doctor',
     'crispy_forms',
     'patient',
+    'rest_framework',
+    'drf_braces',
 
 ]
 

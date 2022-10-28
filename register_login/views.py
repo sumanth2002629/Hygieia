@@ -2,53 +2,59 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import DoctorSignUpForm, PatientSignUpForm
 from .models import User, Doctor, Patient
+from .serializers import DoctorSerializer,PatientSerializer
+
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 
+@api_view(['POST'])
 def signup_doctor(request):
-    if request.method == 'POST':
-        form = DoctorSignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
 
-            return redirect('login')
+    print(request.data)
+    
+    form = DoctorSignUpForm(data=request.data) 
+    if form.is_valid():
+        form.save()
 
-    else:
-        form = DoctorSignUpForm()
+        Response("Thank you for registering!!")
 
-    return render(request, 'register_login/signup_doctor.html', {'form': form})
+        return redirect('login') #This needs to be removed later.
 
 
+@api_view(['POST'])
 def signup_patient(request):
     
-    if request.method == 'POST':
-        form = PatientSignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
+    
+    form = PatientSignUpForm(request.POST)
+    if form.is_valid():
+        form.save()
 
-            return redirect('login')
+        Response("Thank you for registering!!")
+        return redirect('login') #This needs to be removed later
 
     else:
         form = PatientSignUpForm()
-
-    return render(request,'register_login/signup_patient.html',{'form':form})
-
+        return Response(form.errors.as_data())
     
 
 
-
+@api_view(['GET'])
 def profile(request):
     if not request.user.is_authenticated:
-        return render(request, 'register_login/login.html')
+        return Response("User is not authenticated!!")
 
-    username = request.user.username
+    serializer = DoctorSerializer(request.user,many=False)
+    return Response(serializer.data)
 
-    if Doctor.objects.filter(user=request.user):
-        # Go to recruiter home page
-
-        details = Doctor.objects.get(user=request.user)
-        return redirect('doctor-home')
-    else:
-        # pass
-        #change this to patient
-        details = Patient.objects.get(user=request.user)
-        return redirect('patient-home')
+    # if Doctor.objects.filter(user=request.user):
+    #     details = Doctor.objects.get(user=request.user)
+    #     serializer = DoctorSerializer(details,many=False)
+        
+    #     return Response(serializer.data)
+    #     # return redirect('doctor-home')
+    # else:
+    #     details = Patient.objects.get(user=request.user)
+    #     serializer = PatientSerializer(details,many=False)
+    #     return Response(serializer.data)
+    #     # return redirect('patient-home')

@@ -16,7 +16,7 @@ class DoctorSignUpForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_doctor = True
         user.save()
-        doctor = Doctor(user=user)
+        doctor = Doctor(user=user) 
         doctor.specialisation = self.cleaned_data.get('Specialisation')
         doctor.save()
         return user
