@@ -5,12 +5,16 @@ from register_login.models import Doctor,Patient,User
 from django.core.mail import send_mail
 
 # Create your views here.
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def home(request):
     user = request.user
     doctor = Doctor.objects.filter(user=user)
     return render(request, 'doctor/doctor_profile.html',{"doctor":doctor[0]})
 
+
+@login_required
 def add_slots(request):
     print(request.GET)
     if request.GET:
@@ -37,6 +41,8 @@ def add_slots(request):
 
     return render(request,"doctor/free_slots_doc.html")
 
+
+@login_required
 def view_slots(request):
     #get username actually from cookie or something
     print(request.GET)

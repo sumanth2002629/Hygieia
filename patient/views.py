@@ -3,16 +3,18 @@ from django.core.mail import send_mail
 from register_login.models import Doctor,User,Patient
 from doctor.models import Free_Slots
 import random,string
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
-
+@login_required
 def home(request):
     user = request.user
     patient = Patient.objects.filter(user=user)
     return render(request, 'patient/patient_profile.html',{"patient":patient[0]})
 
+@login_required
 def book_appoinment(request):
     #first recieve specialisation and sort doctors based on that
 
@@ -66,6 +68,7 @@ def book_appoinment(request):
 
     return render(request, 'patient/book_appoinment.html',{"available_doctors":d})
 
+@login_required
 def patient_view_slots(request,doc_name):
 
     # print(request.GET)

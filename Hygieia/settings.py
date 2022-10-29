@@ -130,7 +130,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'profile'
+LOGIN_REDIRECT_URL = 'profile' #This needs to be chenged to the frontend profile page.
+LOGIN_URL = "login_required"  #This needs to be chenged to the frontend login page.
 
 #email settings
 EMAIL_HOST = 'smtp-mail.outlook.com'
